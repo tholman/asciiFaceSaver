@@ -59,20 +59,5 @@ typedef uint_least32_t char32_t;
 #endif
 
 #if defined(__has_feature) && __has_feature(modules)
-@import ScreenSaver;
-@import Foundation;
 #endif
-
-@class NSWindow;
-
-SWIFT_CLASS("_TtC11ascii_faces14asciiFacesView")
-@interface asciiFacesView : ScreenSaverView
-- (instancetype)init;
-- (instancetype)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview OBJC_DESIGNATED_INITIALIZER;
-- (void)drawRect:(NSRect)rect;
-- (void)animateOneFrame;
-- (BOOL)hasConfigureSheet;
-- (NSWindow *)configureSheet;
-- (void)fillBG;
-@end
 
