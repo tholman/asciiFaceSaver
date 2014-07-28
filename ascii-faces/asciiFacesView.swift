@@ -44,7 +44,7 @@ class asciiFacesView: ScreenSaverView {
         
         // Draw the face!
         var font: NSFont;
-        font = NSFont(name: "HelveticaNeue", size: 194.0 );
+        font = NSFont(name: "HelveticaNeue", size: 124.0 );
         
         var paragraph: NSMutableParagraphStyle;
         paragraph = NSMutableParagraphStyle();
@@ -52,7 +52,7 @@ class asciiFacesView: ScreenSaverView {
         
         
         var string: NSAttributedString;
-        string = NSAttributedString(string: "(ಠ_ಠ)", attributes: [
+        string = NSAttributedString(string: "(ノಠ益ಠ)ノ", attributes: [
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: paragraph
         ]);
@@ -61,12 +61,13 @@ class asciiFacesView: ScreenSaverView {
         var size: NSSize;
         
         size = self.bounds.size;
+        var stringSize = string.size;
         
         rect = NSRect();
-        rect.size = NSMakeSize( size.width, size.height );
+        rect.size = NSMakeSize( size.width, stringSize.height );
         rect.origin.x = 0.0;
-        rect.origin.y = 0.0;
-        
+        rect.origin.y = (size.height - stringSize.height) / 2;
+    
         string.drawInRect( rect );
 
         
