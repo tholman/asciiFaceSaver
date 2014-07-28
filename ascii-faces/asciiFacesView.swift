@@ -13,6 +13,10 @@ class asciiFacesView: ScreenSaverView {
     
     
     // Initializers
+    var faces = [ "(ノಠ益ಠ)ノ", "~(˘▾˘~)", "(ಠ_ಠ)" ];
+    var currentFace = 0;
+    var currentFrame = 0;
+    var totalFramesInSet = 40;
     
     convenience init() {
         self.init(frame: CGRectZero, isPreview: false)
@@ -40,6 +44,13 @@ class asciiFacesView: ScreenSaverView {
     
     override func animateOneFrame() {
         
+        currentFrame++;
+        if( currentFrame > totalFramesInSet ) {
+            currentFace++;
+            currentFace %= faces.count;
+            currentFrame = 0;
+        }
+        
         fillBG();
         
         // Draw the face!
@@ -52,7 +63,7 @@ class asciiFacesView: ScreenSaverView {
         
         
         var string: NSAttributedString;
-        string = NSAttributedString(string: "(ノಠ益ಠ)ノ", attributes: [
+        string = NSAttributedString(string: faces[currentFace], attributes: [
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: paragraph
         ]);
