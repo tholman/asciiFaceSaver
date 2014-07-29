@@ -10,12 +10,23 @@ import Foundation
 
 class asciiFaceManager {
 
-    var faces = [ "(ノಠ益ಠ)ノ", "~(˘▾˘~)", "(ಠ_ಠ)" ];
+    var faces = [ "~(˘▾˘~)", "(ノಠ益ಠ)ノ", "(ಠ_ಠ)" ];
+    var usedFaces: [String] = [];
 
+    // Returns a random face that hasn't been used this cycle.
+    // The only way you can get the same face twice, is after they have all played.
     func getFace() -> String {
 
         //@TODO: Is there a nicer way to get a random array item?
         var randomIndex = Int(arc4random_uniform(UInt32(faces.count)));
-        return faces[randomIndex];
+        var face = faces.removeAtIndex( randomIndex );
+        usedFaces.append( face );
+
+        if( faces.count == 0 ) {
+            faces = usedFaces;
+            usedFaces = [];
+        }
+        
+        return face;
     }
 }
