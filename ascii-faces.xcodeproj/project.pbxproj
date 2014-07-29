@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		22CA0F181985FAC2004C5398 /* asciiFacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA0F171985FAC2004C5398 /* asciiFacesView.swift */; };
+		22CBD2641986822D00A775EF /* asciiFaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CBD2631986822D00A775EF /* asciiFaceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		22CA0F081985F772004C5398 /* ascii-faces.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ascii-faces.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CA0F0C1985F772004C5398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22CA0F171985FAC2004C5398 /* asciiFacesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = asciiFacesView.swift; sourceTree = "<group>"; };
+		22CBD2631986822D00A775EF /* asciiFaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = asciiFaceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			children = (
 				22CA0F0B1985F772004C5398 /* Supporting Files */,
 				22CA0F171985FAC2004C5398 /* asciiFacesView.swift */,
+				22CBD2631986822D00A775EF /* asciiFaceManager.swift */,
 			);
 			path = "ascii-faces";
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22CA0F181985FAC2004C5398 /* asciiFacesView.swift in Sources */,
+				22CBD2641986822D00A775EF /* asciiFaceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

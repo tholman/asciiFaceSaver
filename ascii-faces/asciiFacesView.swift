@@ -12,19 +12,23 @@ import ScreenSaver
 class asciiFacesView: ScreenSaverView {
     
     
-    // Initializers
-    var faces = [ "(ノಠ益ಠ)ノ", "~(˘▾˘~)", "(ಠ_ಠ)" ];
+    // @TODO: Move this into some other file, somewhow.
     var currentFace = 0;
     var currentFrame = 0;
     var totalFramesInSet = 40;
+    var faceManager = asciiFaceManager();
+    var face: String;
     
+    
+    // Initializers
     convenience init() {
-        self.init(frame: CGRectZero, isPreview: false)
+        self.init(frame: CGRectZero, isPreview: false);
     }
     
     init(frame: NSRect, isPreview: Bool) {
-        super.init(frame: frame, isPreview: isPreview)
         
+        face = faceManager.getFace();
+        super.init(frame: frame, isPreview: isPreview)
         setAnimationTimeInterval( 1.0 / 30.0 );
     }
     
@@ -44,10 +48,11 @@ class asciiFacesView: ScreenSaverView {
     
     override func animateOneFrame() {
         
+        // Check changing font
+        // @TODO: Does this belong in animateOneFrame... probably not.
         currentFrame++;
         if( currentFrame > totalFramesInSet ) {
-            currentFace++;
-            currentFace %= faces.count;
+            face = faceManager.getFace();
             currentFrame = 0;
         }
         
@@ -63,7 +68,7 @@ class asciiFacesView: ScreenSaverView {
         
         
         var string: NSAttributedString;
-        string = NSAttributedString(string: faces[currentFace], attributes: [
+        string = NSAttributedString(string: face, attributes: [
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: paragraph
         ]);
@@ -74,6 +79,7 @@ class asciiFacesView: ScreenSaverView {
         size = self.bounds.size;
         var stringSize = string.size;
         
+        // @TODO: Does this need to be defined every single frame?
         rect = NSRect();
         rect.size = NSMakeSize( size.width, stringSize.height );
         rect.origin.x = 0.0;
@@ -94,7 +100,6 @@ class asciiFacesView: ScreenSaverView {
     }
     
     // Private
-    
     func fillBG() {
         
         var path: NSBezierPath;
