@@ -15,7 +15,8 @@ class asciiFacesView: ScreenSaverView {
     // @TODO: Move this into some other file, somewhow.
     var currentFace = 0;
     var currentFrame = 0;
-    var totalFramesInSet = 40;
+    var totalFramesInSet = 90;
+    var fadeTime = 30; // frames.
     var faceManager = asciiFaceManager();
     var face: String;
     
@@ -56,6 +57,19 @@ class asciiFacesView: ScreenSaverView {
             currentFrame = 0;
         }
         
+        var alphaValue: CGFloat;
+        // Fade in
+        if ( currentFrame < fadeTime ) {
+            alphaValue = CGFloat( currentFrame ) / CGFloat( fadeTime );
+        // Fade out
+        } else if ( currentFrame > ( totalFramesInSet - fadeTime ) ) {
+            alphaValue = CGFloat(1.0) -
+                
+                        CGFloat(currentFrame - (totalFramesInSet - fadeTime)) / CGFloat(fadeTime);
+        } else {
+            alphaValue = CGFloat(1.0);
+        }
+        
         fillBG();
         
         // Draw the face!
@@ -66,11 +80,14 @@ class asciiFacesView: ScreenSaverView {
         paragraph = NSMutableParagraphStyle();
         paragraph.alignment = NSTextAlignment.CenterTextAlignment
         
+
+        var textColor = NSColor(calibratedRed: 0.0, green: 0.0, blue: 0.0, alpha: alphaValue)
         
         var string: NSAttributedString;
         string = NSAttributedString(string: face, attributes: [
             NSFontAttributeName: font,
-            NSParagraphStyleAttributeName: paragraph
+            NSParagraphStyleAttributeName: paragraph,
+            NSForegroundColorAttributeName: textColor
         ]);
         
         var rect: NSRect;

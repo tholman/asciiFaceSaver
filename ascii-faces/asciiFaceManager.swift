@@ -10,7 +10,18 @@ import Foundation
 
 class asciiFaceManager {
 
-    var faces = [ "~(˘▾˘~)", "(ノಠ益ಠ)ノ", "(ಠ_ಠ)" ];
+    var faces = [ "~(˘▾˘~)",
+                  "(ノಠ益ಠ)ノ",
+                  "(ಠ_ಠ)",
+                  "༼ つ ◕_◕ ༽つ",
+                  "╚(ಠ_ಠ)=┐",
+                  "(ू˃̣̣̣̣̣̣︿˂̣̣̣̣̣̣ ू)",
+                  "(ó ì_í)",
+                  "(ง'̀-'́)ง",
+                  "ლ(ಠ益ಠლ)",
+                  "(ꐦ°᷄д°᷅)"
+    ];
+    
     var usedFaces: [String] = [];
 
     // Returns a random face that hasn't been used this cycle.
