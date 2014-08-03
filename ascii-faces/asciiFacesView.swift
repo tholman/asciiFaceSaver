@@ -11,130 +11,120 @@ import ScreenSaver
 
 class asciiFacesView: ScreenSaverView {
     
+    // Misc
+    var size             = NSSize();
     
-    // @TODO: Move this into some other file, somewhow.
-    var currentFace = 0;
-    var currentFrame = 0;
-    var totalFramesInSet = 90;
-    var fadeTime = 30; // frames.
-    var faceManager = asciiFaceManager();
+    // Frame management
+    var currentFrame     = CGFloat(0.0);
+    var totalFramesInSet = CGFloat(200.0);
+    var fadeTime         = CGFloat(50.0); // frames.
+    
+    // Face management
     var face: String;
+    var faceManager      = asciiFaceManager();
+
+    // Background management
+    var bgPath           = NSBezierPath();
+    var bgColor          = NSColor(calibratedRed: 0.98, green: 0.98, blue: 0.98, alpha: 1);
     
+    // Text Management
+    var faceColor        = NSColor();
+    var textRect         = NSRect();
+    var faceString       = NSAttributedString();
+    var faceFont         = NSFont(name: "HelveticaNeue", size: 124.0 );
+    var fontStyle        = NSMutableParagraphStyle();
     
-    // Initializers
     convenience init() {
         self.init(frame: CGRectZero, isPreview: false);
     }
     
     init(frame: NSRect, isPreview: Bool) {
         
+        // Get first face
         face = faceManager.getFace();
-        super.init(frame: frame, isPreview: isPreview)
+        
+        super.init(frame: frame, isPreview: isPreview);
+        
+        size = self.bounds.size;
+        
+        // Prepare background path.
+        var bgRect = NSRect();
+        bgRect.size = NSMakeSize( size.width, size.height );
+        bgRect.origin.x = 0.0;
+        bgRect.origin.y = 0.0;
+        bgPath = NSBezierPath( rect: bgRect );
+        
+        // Prepare text variables
+        fontStyle.alignment = NSTextAlignment.CenterTextAlignment;
+        
         setAnimationTimeInterval( 1.0 / 30.0 );
     }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    
-    // NSView
     
     override func drawRect(rect: NSRect) {
         super.drawRect(rect)
     }
     
-    
-    // ScreenSaverView
-    
-    override func animateOneFrame() {
-        
-        // Check changing font
-        // @TODO: Does this belong in animateOneFrame... probably not.
-        currentFrame++;
-        if( currentFrame > totalFramesInSet ) {
-            face = faceManager.getFace();
-            currentFrame = 0;
-        }
-        
-        var alphaValue: CGFloat;
-        // Fade in
-        if ( currentFrame < fadeTime ) {
-            alphaValue = CGFloat( currentFrame ) / CGFloat( fadeTime );
-        // Fade out
-        } else if ( currentFrame > ( totalFramesInSet - fadeTime ) ) {
-            alphaValue = CGFloat(1.0) -
-                
-                        CGFloat(currentFrame - (totalFramesInSet - fadeTime)) / CGFloat(fadeTime);
-        } else {
-            alphaValue = CGFloat(1.0);
-        }
-        
-        fillBG();
-        
-        // Draw the face!
-        var font: NSFont;
-        font = NSFont(name: "HelveticaNeue", size: 124.0 );
-        
-        var paragraph: NSMutableParagraphStyle;
-        paragraph = NSMutableParagraphStyle();
-        paragraph.alignment = NSTextAlignment.CenterTextAlignment
-        
-
-        var textColor = NSColor(calibratedRed: 0.0, green: 0.0, blue: 0.0, alpha: alphaValue)
-        
-        var string: NSAttributedString;
-        string = NSAttributedString(string: face, attributes: [
-            NSFontAttributeName: font,
-            NSParagraphStyleAttributeName: paragraph,
-            NSForegroundColorAttributeName: textColor
-        ]);
-        
-        var rect: NSRect;
-        var size: NSSize;
-        
-        size = self.bounds.size;
-        var stringSize = string.size;
-        
-        // @TODO: Does this need to be defined every single frame?
-        rect = NSRect();
-        rect.size = NSMakeSize( size.width, stringSize.height );
-        rect.origin.x = 0.0;
-        rect.origin.y = (size.height - stringSize.height) / 2;
-    
-        string.drawInRect( rect );
-
-        
-        return;
-    }
-    
     override func hasConfigureSheet() -> Bool {
-      return false;
+        return false;
     }
     
     override func configureSheet() -> NSWindow! {
         return nil;
     }
     
-    // Private
+    // Main Loop
+    override func animateOneFrame() {
+        
+        // Keep track of frames past, for changing and fading faces.
+        currentFrame++;
+        if( currentFrame > totalFramesInSet ) {
+            face = faceManager.getFace();
+            currentFrame = 0.0;
+        }
+        
+        fillBG();
+        
+        faceColor = NSColor( calibratedRed: 0.0, green: 0.0, blue: 0.0, alpha: getTextAlpha() );
+        faceString = NSAttributedString(string: face, attributes: [
+            NSFontAttributeName: faceFont,
+            NSParagraphStyleAttributeName: fontStyle,
+            NSForegroundColorAttributeName: faceColor
+        ]);
+        
+        // Create rect in the center of the screen, based on the face string height.
+        textRect = NSRect();
+        textRect.size = NSMakeSize( size.width, faceString.size.height );
+        textRect.origin.x = 0.0;
+        textRect.origin.y = (size.height - faceString.size.height) / 2;
+    
+        faceString.drawInRect( textRect );
+        
+        return;
+    }
+    
+    // Return the alpha value (fade in/out) for the text.
+    func getTextAlpha() -> CGFloat {
+
+        // Fade in
+        if ( currentFrame < fadeTime ) {
+        
+            return (currentFrame / fadeTime);
+    
+        // Fade out
+        } else if ( currentFrame > ( totalFramesInSet - fadeTime ) ) {
+            
+            return (1.0 - (currentFrame - (totalFramesInSet - fadeTime)) / fadeTime);
+        }
+        
+        // Solid
+        return 1.0;
+    }
+    
+    // Private, clears the background
     func fillBG() {
         
-        var path: NSBezierPath;
-        var rect: NSRect;
-        var size: NSSize;
-        var color: NSColor;
-        
-        size = self.bounds.size;
-        color = NSColor(calibratedRed: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-
-        rect = NSRect();
-        rect.size = NSMakeSize( size.width, size.height );
-        rect.origin.x = 0.0;
-        rect.origin.y = 0.0;
-        
-        path = NSBezierPath( rect: rect );
-        
-        color.setFill();
-        path.fill();
+        //Properties set during init.
+        bgColor.setFill();
+        bgPath.fill();
     }
 }
