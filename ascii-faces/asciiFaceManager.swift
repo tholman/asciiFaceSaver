@@ -13,7 +13,7 @@ class asciiFaceManager {
 
     // If you're adding to this, please try to keep it uniform...
     // guys like this: ༼ つ ◕_◕ ༽つ (despite being awesome) make
-    // the screen saver look a bit odd.\
+    // the screen saver look a bit odd. by taking up too much space.
     var faces = [ "~(˘▾˘~)" ,
                   "(ノಠ益ಠ)ノ",
                   "(ಠ_ಠ)",
@@ -45,7 +45,6 @@ class asciiFaceManager {
                   "(੭ु ຶਊ ຶ)੭ु",
                   "(ﾉಥ益ಥ）ﾉ",
                   "( ͡° ͜ʖ ͡°)",
-                  "(⌐■_■)",
                   "(ಠ_ರೃ)",
                   "щ(ºДºщ)",
                   "(ಥ﹏ಥ)" 
