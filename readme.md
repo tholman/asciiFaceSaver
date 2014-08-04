@@ -4,7 +4,6 @@
 
 This is built in swift, fun stuff, yay etc etc
 
-
 ### Adding a face
 
 I'm totally happy with people contributing their own faces, here's a little wrap up of the steps involved!
@@ -16,6 +15,8 @@ I'm totally happy with people contributing their own faces, here's a little wrap
 5. Create pull request, include the face in that as well, just like the commit message.
 
 Awesome! I'll merge it in, and create a new build.
+
+### What it looks like
 
 ### Thanks
 
