@@ -13,6 +13,11 @@ class asciiFacesView: ScreenSaverView {
     
     // Misc
     var size             = NSSize();
+    var lightTheme       = false;
+    var lightColor       = NSColor(calibratedRed: 0.98, green: 0.98, blue: 0.98, alpha: 1);
+    var darkColor        = NSColor(calibratedRed: 0.02, green: 0.02, blue: 0.02, alpha: 1);
+    
+    
     
     // Frame management
     var currentFrame     = CGFloat(0.0);
@@ -25,9 +30,10 @@ class asciiFacesView: ScreenSaverView {
 
     // Background management
     var bgPath           = NSBezierPath();
-    var bgColor          = NSColor(calibratedRed: 0.98, green: 0.98, blue: 0.98, alpha: 1);
-    
+    var bgColor          = NSColor();
+
     // Text Management
+    var baseFaceColor    = NSColor();
     var faceColor        = NSColor();
     var textRect         = NSRect();
     var faceString       = NSAttributedString();
@@ -53,6 +59,15 @@ class asciiFacesView: ScreenSaverView {
         bgRect.origin.x = 0.0;
         bgRect.origin.y = 0.0;
         bgPath = NSBezierPath( rect: bgRect );
+        
+        // Set theme
+        if( lightTheme == true ) {
+            baseFaceColor = darkColor;
+            bgColor       = lightColor;
+        } else {
+            baseFaceColor = lightColor;
+            bgColor       = darkColor;
+        }
         
         // Prepare text variables
         fontStyle.alignment = NSTextAlignment.CenterTextAlignment;
@@ -84,7 +99,7 @@ class asciiFacesView: ScreenSaverView {
         
         fillBG();
         
-        faceColor = NSColor( calibratedRed: 0.0, green: 0.0, blue: 0.0, alpha: getTextAlpha() );
+        faceColor = baseFaceColor.colorWithAlphaComponent( getTextAlpha() );
         faceString = NSAttributedString(string: face, attributes: [
             NSFontAttributeName: faceFont,
             NSParagraphStyleAttributeName: fontStyle,

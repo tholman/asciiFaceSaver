@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		22CA0F181985FAC2004C5398 /* asciiFacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA0F171985FAC2004C5398 /* asciiFacesView.swift */; };
 		22CBD2641986822D00A775EF /* asciiFaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CBD2631986822D00A775EF /* asciiFaceManager.swift */; };
+		22CBD26A1990743700A775EF /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CBD2691990743700A775EF /* ScreenSaver.framework */; };
+		22CBD26C1990744000A775EF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CBD26B1990744000A775EF /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,6 +18,8 @@
 		22CA0F0C1985F772004C5398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22CA0F171985FAC2004C5398 /* asciiFacesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = asciiFacesView.swift; sourceTree = "<group>"; };
 		22CBD2631986822D00A775EF /* asciiFaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = asciiFaceManager.swift; sourceTree = "<group>"; };
+		22CBD2691990743700A775EF /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
+		22CBD26B1990744000A775EF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -23,6 +27,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22CBD26A1990743700A775EF /* ScreenSaver.framework in Frameworks */,
+				22CBD26C1990744000A775EF /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,6 +38,8 @@
 		22CA0EFE1985F772004C5398 = {
 			isa = PBXGroup;
 			children = (
+				22CBD26B1990744000A775EF /* Cocoa.framework */,
+				22CBD2691990743700A775EF /* ScreenSaver.framework */,
 				22CA0F0A1985F772004C5398 /* ascii-faces */,
 				22CA0F091985F772004C5398 /* Products */,
 			);
