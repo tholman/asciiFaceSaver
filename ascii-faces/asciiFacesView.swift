@@ -40,11 +40,11 @@ class asciiFacesView: ScreenSaverView {
     var faceFont         = NSFont(name: "HelveticaNeue", size: 124.0 );
     var fontStyle        = NSMutableParagraphStyle();
     
-    convenience init() {
+    convenience override init() {
         self.init(frame: CGRectZero, isPreview: false);
     }
     
-    init(frame: NSRect, isPreview: Bool) {
+    override init(frame: NSRect, isPreview: Bool) {
         
         // Get first face
         face = faceManager.getFace();
@@ -74,6 +74,10 @@ class asciiFacesView: ScreenSaverView {
         
         setAnimationTimeInterval( 1.0 / 30.0 );
     }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func drawRect(rect: NSRect) {
         super.drawRect(rect)
@@ -101,7 +105,7 @@ class asciiFacesView: ScreenSaverView {
         
         faceColor = baseFaceColor.colorWithAlphaComponent( getTextAlpha() );
         faceString = NSAttributedString(string: face, attributes: [
-            NSFontAttributeName: faceFont,
+            NSFontAttributeName: faceFont!,
             NSParagraphStyleAttributeName: fontStyle,
             NSForegroundColorAttributeName: faceColor
         ]);
