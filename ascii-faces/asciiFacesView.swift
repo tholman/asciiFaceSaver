@@ -3,7 +3,7 @@
 //  ascii-faces
 //
 //  Created by Timothy Holman on 7/27/14.
-//  Copyright (c) 2014 Timothy Holman. All rights reserved.
+//  Copyright (c) 2015 Timothy Holman. All rights reserved.
 //
 
 import Cocoa
@@ -16,8 +16,6 @@ class asciiFacesView: ScreenSaverView {
     var lightTheme       = false;
     var lightColor       = NSColor(calibratedRed: 0.98, green: 0.98, blue: 0.98, alpha: 1);
     var darkColor        = NSColor(calibratedRed: 0.02, green: 0.02, blue: 0.02, alpha: 1);
-    
-    
     
     // Frame management
     var currentFrame     = CGFloat(0.0);
@@ -40,9 +38,7 @@ class asciiFacesView: ScreenSaverView {
     var faceFont         = NSFont(name: "HelveticaNeue", size: 124.0 );
     var fontStyle        = NSMutableParagraphStyle();
     
-    convenience override init() {
-        self.init(frame: CGRectZero, isPreview: false);
-    }
+    @IBOutlet weak var optionsPanel: NSPanel?;
     
     override init(frame: NSRect, isPreview: Bool) {
         
@@ -84,11 +80,14 @@ class asciiFacesView: ScreenSaverView {
     }
     
     override func hasConfigureSheet() -> Bool {
-        return false;
+        return true;
     }
     
     override func configureSheet() -> NSWindow! {
-        return nil;
+        if( self.optionsPanel == nil ) {
+            NSBundle().loadNibNamed("Config", owner: self, topLevelObjects: nil);
+        }
+        return self.optionsPanel;
     }
     
     // Main Loop

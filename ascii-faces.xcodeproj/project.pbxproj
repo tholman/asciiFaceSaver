@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		226607861B1E4B1F00C7C5AF /* Config.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226607851B1E4B1F00C7C5AF /* Config.xib */; };
 		22CA0F181985FAC2004C5398 /* asciiFacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA0F171985FAC2004C5398 /* asciiFacesView.swift */; };
 		22CBD2641986822D00A775EF /* asciiFaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CBD2631986822D00A775EF /* asciiFaceManager.swift */; };
 		22CBD26A1990743700A775EF /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CBD2691990743700A775EF /* ScreenSaver.framework */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		226607851B1E4B1F00C7C5AF /* Config.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Config.xib; sourceTree = "<group>"; };
 		22CA0F081985F772004C5398 /* ascii-faces.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ascii-faces.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CA0F0C1985F772004C5398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22CA0F171985FAC2004C5398 /* asciiFacesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = asciiFacesView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				22CA0F0B1985F772004C5398 /* Supporting Files */,
 				22CA0F171985FAC2004C5398 /* asciiFacesView.swift */,
 				22CBD2631986822D00A775EF /* asciiFaceManager.swift */,
+				226607851B1E4B1F00C7C5AF /* Config.xib */,
 			);
 			path = "ascii-faces";
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				226607861B1E4B1F00C7C5AF /* Config.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +239,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "ascii-faces/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -250,6 +255,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "ascii-faces/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
